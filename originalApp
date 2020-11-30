@@ -1,0 +1,98 @@
+import React, { Component } from 'react';
+import './App.css';
+import { web3 } from "../services"
+import detectEthereumProvider from '@metamask/detect-provider';
+
+
+class App extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        address: '',
+        amount: '',
+        date: '',
+        message: '',
+        invoiceId: 0
+      };
+      this.invoicesArr = [];
+      this.invoiceStorage = window.localStorage;
+    }
+
+  async componentDidMount() {
+      const provider = await detectEthereumProvider();
+      const invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
+      if(invoices == null) {
+        this.invoicesArr = [];
+      } else {
+        this.invoicesArr = invoices;
+        this.state.invoiceId = this.invoicesArr.length;
+      }
+  }
+
+  sendInvoice = (event) => {
+    const invoice = {
+      id: this.state.invoiceId,
+      address: this.state.address,
+      date: this.state.date,
+      amount: this.state.amount
+    }
+
+    this.invoicesArr.push(invoice);
+    this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoicesArr));
+    console.log(this.invoiceStorage);
+  }
+
+  onSubmit = async (event) => {
+    event.preventDefault();
+    const invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
+    const invoiceToPay = invoices[1]
+    web3.eth.sendTransaction({
+        to: invoiceToPay.address,
+        from: web3.givenProvider.selectedAddress,
+        value: web3.utils.toWei(invoiceToPay.amount, 'ether'),
+    })
+
+  };
+
+  render() {
+    return (
+      <div>
+        <h2>Contractor Portal</h2>
+        <hr />
+        <form onSubmit={this.onSubmit}>
+          <h4>Submit a new invoice</h4>
+          <div>
+            <div>
+              <label>Enter your deposit address:</label>
+              <input
+                placeholder="ex. 0x00F51D0e"
+                value={this.state.address}
+                onChange={event => this.setState({ address: event.target.value})}
+                />
+            </div>
+            <div>
+              <label>Date:</label>
+              <input
+                type="date"
+                value={this.state.date}
+                onChange={event => this.setState({ date: event.target.value})}
+              />
+            </div>
+            <div>
+              <label>Amount:</label>
+              <input
+                placeholder="amount in ether"
+                value={this.state.amount}
+                onChange={event => this.setState({ amount: event.target.value})}
+                />
+            </div>
+          </div>
+          <button>Pay Invoice</button>
+        </form>
+        <button onClick={this.sendInvoice}>Submit</button>
+      </div>
+    );
+  }
+}
+
+export default App;
