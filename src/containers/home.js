@@ -41,6 +41,9 @@ class Home extends Component {
             Employer Portal
           </StyledButton>
         </div>
+        <div>
+          {window.ethereum === undefined ? <StyledButton size="small" href="https://metamask.io/download.html">Install Metamask</StyledButton> : <h1></h1> }
+        </div>
       </div>
     );
   }
