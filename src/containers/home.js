@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import detectEthereumProvider from '@metamask/detect-provider';
-import {
-  Link
-} from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
@@ -20,6 +17,10 @@ class Home extends Component {
 
   async componentDidMount() {
       const provider = await detectEthereumProvider();
+
+      if (!provider) {
+        alert('Please install Metamask to use this application!')
+      }
   }
 
   render() {

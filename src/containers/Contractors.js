@@ -81,7 +81,7 @@ class Contractors extends Component {
             <div>
               <StyledTextField
                 id="standard-basic"
-                label="Enter deposit address:"
+                label="Enter eth deposit address:"
                 placeholder="ex. 0x00F51D0e"
                 value={this.state.address}
                 onChange={event => this.setState({ address: event.target.value})}

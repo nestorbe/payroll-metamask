@@ -3,13 +3,9 @@ import './App.css';
 import {
   BrowserRouter,
 } from "react-router-dom";
-
-import { AppRouter, Header } from './'
+import { AppRouter } from './'
 
 class App extends Component {
-    constructor(props) {
-      super(props);
-    }
 
   render() {
     return (

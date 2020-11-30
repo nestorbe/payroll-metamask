@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import { Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
@@ -45,7 +44,7 @@ class Employer extends Component {
     //instantiate the invoice object
     const invoiceToPay = this.invoices[id];
     //send metamask transaction
-    web3.eth.sendTransaction({
+    await web3.eth.sendTransaction({
         to: invoiceToPay.address,
         from: web3.givenProvider.selectedAddress,
         value: web3.utils.toWei(invoiceToPay.amount, 'ether'),
