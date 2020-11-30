@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { web3 } from "../services"
 import detectEthereumProvider from '@metamask/detect-provider';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -17,7 +18,7 @@ class Home extends Component {
 
   async componentDidMount() {
       const provider = await detectEthereumProvider();
-
+      window.ethereum.enable();
       if (!provider) {
         alert('Please install Metamask to use this application!')
       }
