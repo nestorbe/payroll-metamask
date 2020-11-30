@@ -18,8 +18,9 @@ class Home extends Component {
 
   async componentDidMount() {
       const provider = await detectEthereumProvider();
-      window.ethereum.enable();
-      if (!provider) {
+      if(window.ethereum !== undefined) {
+        window.ethereum.enable();
+      } else {
         alert('Please install Metamask to use this application!')
       }
   }
