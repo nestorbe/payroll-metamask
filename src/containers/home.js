@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
-import { web3 } from "../services"
 import detectEthereumProvider from '@metamask/detect-provider';
 import Chip from '@material-ui/core/Chip';
 import { StyledButton } from './Styles'

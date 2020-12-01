@@ -8,14 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import { StyledCard, StyledAlert } from './Styles'
 
 class Employer extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        message: '',
-      };
-      this.invoiceStorage = window.localStorage;
-      this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: '',
+    };
+    this.invoiceStorage = window.localStorage;
+    this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
+  }
 
   handlePay = async (id) => {
     //instantiate the invoice object
