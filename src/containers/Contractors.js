@@ -5,19 +5,19 @@ import Chip from '@material-ui/core/Chip';
 import { StyledTextField, StyledAlert } from './Styles'
 
 class Contractors extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        address: '',
-        amount: '',
-        date: '',
-        message: '',
-        invoiceId: 0
-      };
-      this.invoicesArr = [];
-      this.invoiceStorage = window.localStorage;
-    }
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: '',
+      amount: '',
+      date: '',
+      message: '',
+      invoiceId: 0
+    };
+    this.invoicesArr = [];
+    this.invoiceStorage = window.localStorage;
+  }
+  //Invoices array update on localStorage
   updateInvoices = () => {
     const invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
     if(invoices == null) {
@@ -31,9 +31,7 @@ class Contractors extends Component {
   async componentDidMount() {
       this.updateInvoices();
   }
-
-
-
+  //add an invoice to localStorage
   sendInvoice = (event) => {
     const invoice = {
       id: this.state.invoiceId,
@@ -90,8 +88,8 @@ class Contractors extends Component {
           </div>
         <br></br>
         <Box display="flex"
-        alignItems="center"
-        justifyContent="center">
+             alignItems="center"
+             justifyContent="center">
           {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : <div></div>}
         </Box>
       </div>

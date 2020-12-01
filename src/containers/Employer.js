@@ -16,7 +16,7 @@ class Employer extends Component {
     this.invoiceStorage = window.localStorage;
     this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
   }
-
+  //Pay an invoice using Metamask and then setting invoice as PAID
   handlePay = async (id) => {
     //instantiate the invoice object
     const invoiceToPay = this.invoices[id];
@@ -47,6 +47,7 @@ class Employer extends Component {
     RefreshPageWithDelay();
     };
 
+  //Render cards with invoices method
   renderInvoices() {
     return (
       <div>
@@ -66,8 +67,8 @@ class Employer extends Component {
                 amount owed: {invoice.amount} ether.
               </Typography>
               <Box display="flex"
-              alignItems="center"
-              justifyContent="center">
+                   alignItems="center"
+                   justifyContent="center">
                 {invoice.paid === false ?
                   <Button variant="contained" color="secondary" onClick={() => this.handlePay(invoice.id)}>pay invoice</Button> :
                   <Button variant="contained" disabled>paid</Button>}
@@ -88,8 +89,8 @@ class Employer extends Component {
         <StyledAlert severity="warning">There are no invoices to review!</StyledAlert> </Box>}
         <br></br>
         <Box display="flex"
-        alignItems="center"
-        justifyContent="center">
+             alignItems="center"
+             justifyContent="center">
           {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : <div></div>}
         </Box>
       </div>

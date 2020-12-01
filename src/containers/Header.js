@@ -9,8 +9,8 @@ class Header extends Component {
     return (
       <div>
         <Box display="flex"
-        alignItems="center"
-        justifyContent="center">
+             alignItems="center"
+             justifyContent="center">
           <Breadcrumbs aria-label="breadcrumb">
             <StyledButton href="/">
               Home

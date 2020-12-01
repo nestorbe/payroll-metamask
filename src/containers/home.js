@@ -5,6 +5,7 @@ import { StyledButton } from './Styles'
 
 class Home extends Component {
 
+  //Check if metamask is installed
   connectMetamask = async () => {
     const provider = await detectEthereumProvider();
     if(window.ethereum !== undefined) {
