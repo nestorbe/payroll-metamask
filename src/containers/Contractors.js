@@ -38,15 +38,21 @@ class Contractors extends Component {
       this.invoiceStorage = window.localStorage;
     }
 
-  async componentDidMount() {
-      const invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
-      if(invoices == null) {
-        this.invoicesArr = [];
-      } else {
-        this.invoicesArr = invoices;
-        this.state.invoiceId = this.invoicesArr.length;
-      }
+  updateInvoices = () => {
+    const invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
+    if(invoices == null) {
+      this.invoicesArr = [];
+    } else {
+      this.invoicesArr = invoices;
+      this.state.invoiceId = this.invoicesArr.length;
+    }
   }
+
+  async componentDidMount() {
+      this.updateInvoices();
+  }
+
+
 
   sendInvoice = (event) => {
     const invoice = {
