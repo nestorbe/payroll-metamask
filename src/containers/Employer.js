@@ -91,9 +91,9 @@ class Employer extends Component {
               <Box display="flex"
               alignItems="center"
               justifyContent="center">
-                {invoice.paid === false ? <Button variant="contained" color="secondary" onClick={() => this.handlePay(invoice.id)}>pay invoice</Button> : <Button variant="contained" disabled>
-  paid
-</Button>}
+                {invoice.paid === false ?
+                  <Button variant="contained" color="secondary" onClick={() => this.handlePay(invoice.id)}>pay invoice</Button> :
+                  <Button variant="contained" disabled>paid</Button>}
               </Box>
             </CardContent>
           </StyledCard>
@@ -107,11 +107,8 @@ class Employer extends Component {
       <div>
         <h1><Chip label="Employer Portal" color="secondary" /></h1>
         <hr />
-        {this.invoices !== null ? this.renderInvoices() : <Box display="flex"
-                                                              alignItems="center"
-                                                              justifyContent="center">
-        <StyledAlert severity="warning">There are no invoices to review!</StyledAlert>
-        </Box>}
+        {this.invoices !== null ? this.renderInvoices() : <Box display="flex" alignItems="center" justifyContent="center">
+        <StyledAlert severity="warning">There are no invoices to review!</StyledAlert> </Box>}
         <br></br>
         <Box display="flex"
         alignItems="center"

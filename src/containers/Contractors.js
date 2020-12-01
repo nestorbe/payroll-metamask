@@ -15,7 +15,6 @@ const StyledAlert = withStyles((theme) => ({
   },
 }))(Alert);
 
-
 const StyledTextField = withStyles((theme) => ({
   root: {
     '& > *': {
@@ -67,7 +66,7 @@ class Contractors extends Component {
   render() {
     return (
       <div>
-        <h1><Chip label="Contractor Portal" color="primary" size="large" /></h1>
+        <h1><Chip label="Contractor Portal" color="primary" /></h1>
         <hr />
           <h1><Chip label="Submit new invoice" variant="outlined" color="secondary" size="small" /></h1>
           <div>
