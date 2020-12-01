@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { Box } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
-import { StyledTextField, StyledAlert } from './Styles'
+import { StyledTextField, StyledAlert, StyledTextFieldMulti } from './Styles'
 
 class Contractors extends Component {
   constructor(props) {
@@ -12,7 +12,8 @@ class Contractors extends Component {
       amount: '',
       date: '',
       message: '',
-      invoiceId: 0
+      invoiceId: 0,
+      reason: '',
     };
     this.invoicesArr = [];
     this.invoiceStorage = window.localStorage;
@@ -38,6 +39,7 @@ class Contractors extends Component {
       address: this.state.address,
       date: this.state.date,
       amount: this.state.amount,
+      reason: this.state.reason,
       paid: false
     }
 
@@ -78,6 +80,18 @@ class Contractors extends Component {
                 value={this.state.amount}
                 onChange={event => this.setState({ amount: event.target.value})}
                 />
+            </div>
+            <div>
+              <StyledTextFieldMulti
+                id="standard-multiline-static"
+                label="Reason:"
+                multiline
+                rows={4}
+                defaultValue="Default Value"
+                variant="outlined"
+                value={this.state.reason}
+                onChange={event => this.setState({ reason: event.target.value})}
+              />
             </div>
           </div>
           <div>

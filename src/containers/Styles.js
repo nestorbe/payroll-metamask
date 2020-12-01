@@ -33,6 +33,15 @@ export const StyledTextField = withStyles((theme) => ({
   },
 }))(TextField);
 
+export const StyledTextFieldMulti = withStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}))(TextField);
+
 export const StyledButton = withStyles((theme) => ({
   root: {
     '& > *': {

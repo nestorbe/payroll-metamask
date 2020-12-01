@@ -66,6 +66,9 @@ class Employer extends Component {
               <Typography color="textSecondary">
                 amount owed: {invoice.amount} ether.
               </Typography>
+              <Typography color="textSecondary">
+                reason: {invoice.reason}
+              </Typography>
               <Box display="flex"
                    alignItems="center"
                    justifyContent="center">
