@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Box } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = withStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}))(Button);
+import { StyledButton } from './Styles'
 
 class Header extends Component {
 

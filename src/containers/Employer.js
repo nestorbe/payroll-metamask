@@ -2,33 +2,10 @@ import React, { Component } from 'react';
 import { web3 } from "../services"
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-import { withStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
 import { Box } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-
-
-const StyledCard = withStyles(() => ({
-  root: {
-    minWidth: 275,
-    display: 'inline-block',
-    margin: '0 1px',
-    transform: 'scale(0.9)',
-    fontSize: 14,
-    marginBottom: 12,
-  },
-}))(Card);
-
-const StyledAlert = withStyles((theme) => ({
-  root: {
-      width: '30%',
-      '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}))(Alert);
+import { StyledCard, StyledAlert } from './Styles'
 
 class Employer extends Component {
     constructor(props) {

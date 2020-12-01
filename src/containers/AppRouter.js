@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
-
+import { Switch, Route, } from "react-router-dom";
 import { Home, Contractors, Employer, Header } from "./"
 
 class AppRouter extends Component {

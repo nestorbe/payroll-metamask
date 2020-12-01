@@ -2,17 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { web3 } from "../services"
 import detectEthereumProvider from '@metamask/detect-provider';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-
-const StyledButton = withStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}))(Button);
+import { StyledButton } from './Styles'
 
 class Home extends Component {
 

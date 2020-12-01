@@ -1,28 +1,8 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Alert from '@material-ui/lab/Alert';
 import { Box } from '@material-ui/core';
 import Chip from '@material-ui/core/Chip';
-
-const StyledAlert = withStyles((theme) => ({
-  root: {
-      width: '30%',
-      '& > * + *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}))(Alert);
-
-const StyledTextField = withStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}))(TextField);
+import { StyledTextField, StyledAlert } from './Styles'
 
 class Contractors extends Component {
     constructor(props) {
