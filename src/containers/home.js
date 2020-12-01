@@ -16,13 +16,17 @@ const StyledButton = withStyles((theme) => ({
 
 class Home extends Component {
 
-  async componentDidMount() {
-      const provider = await detectEthereumProvider();
-      if(window.ethereum !== undefined) {
-        window.ethereum.enable();
-      } else {
-        alert('Please install Metamask to use this application!')
-      }
+  connectMetamask = async () => {
+    const provider = await detectEthereumProvider();
+    if(window.ethereum !== undefined) {
+      window.ethereum.enable();
+    } else {
+      alert('Please install Metamask to use this application!')
+    }
+  }
+
+  componentDidMount() {
+    this.connectMetamask();
   }
 
   render() {
