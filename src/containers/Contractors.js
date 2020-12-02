@@ -45,8 +45,22 @@ class Contractors extends Component {
 
     this.invoicesArr.push(invoice);
     this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoicesArr));
-    this.setState({ invoiceId: this.invoicesArr.length, message: 'Invoice stored!' });
-    window.location.reload();
+    this.setState({
+      invoiceId: this.invoicesArr.length,
+      message: 'Invoice stored succesfully!',
+      address: '',
+      amount: '',
+      date: '',
+      reason: '',
+    });
+
+    const RemoveMessageWithDelay = () => {
+      setTimeout( function() {
+        this.setState({ message: '' });
+      }.bind(this), 5000);
+    }
+
+    RemoveMessageWithDelay();
   }
 
   render() {

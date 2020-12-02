@@ -12,6 +12,7 @@ class Employer extends Component {
     super(props);
     this.state = {
       message: '',
+      paying: false,
     };
     this.invoiceStorage = window.localStorage;
     this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
@@ -21,6 +22,7 @@ class Employer extends Component {
     //instantiate the invoice object
     const invoiceToPay = this.invoices[id];
     //send metamask transaction
+    this.setState({ paying: true });
     await web3.eth.sendTransaction({
         to: invoiceToPay.address,
         from: web3.givenProvider.selectedAddress,
@@ -30,22 +32,16 @@ class Employer extends Component {
     invoiceToPay.paid = true;
     //update the localStorage array
     this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoices));
-    //delay for success message and reload
-    const ShowMessageWithDelay = () => {
+    this.setState({ message: 'Invoice paid succesfully!', paying: false });
+    //delay for success message to update
+    const updateMessage = () => {
       setTimeout( function() {
-        this.setState({ message: 'Invoice paid succesfully!' });
+        this.setState({ message: '' });
       }.bind(this), 5000);
     }
 
-    const RefreshPageWithDelay = () => {
-      setTimeout( function() {
-        window.location.reload();
-      }.bind(this), 9000);
-    }
-
-    ShowMessageWithDelay();
-    RefreshPageWithDelay();
-    };
+    updateMessage();
+  };
 
   //Render cards with invoices method
   renderInvoices() {
