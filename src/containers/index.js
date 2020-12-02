@@ -1,5 +1,5 @@
 import App from "./App"
-import Home from "./home"
+import Home from "./Home"
 import AppRouter from './AppRouter'
 import Contractors from './Contractors'
 import Employer from './Employer'

@@ -5,30 +5,31 @@ import Chip from '@material-ui/core/Chip';
 import { Box } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { StyledCard, StyledAlert } from './Styles'
+import { StyledCard, StyledAlert, StyledCircular } from './Styles'
 
 class Employer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: '',
-      paying: false,
     };
     this.invoiceStorage = window.localStorage;
     this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
   }
+
   //Pay an invoice using Metamask and then setting invoice as PAID
   handlePay = async (id) => {
     //instantiate the invoice object
     const invoiceToPay = this.invoices[id];
+    invoiceToPay.paying = true;
     //send metamask transaction
-    this.setState({ paying: true });
     await web3.eth.sendTransaction({
         to: invoiceToPay.address,
         from: web3.givenProvider.selectedAddress,
         value: web3.utils.toWei(invoiceToPay.amount, 'ether'),
     })
     //set invoice paid flag to true
+    invoiceToPay.paying = false;
     invoiceToPay.paid = true;
     //update the localStorage array
     this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoices));
@@ -37,7 +38,7 @@ class Employer extends Component {
     const updateMessage = () => {
       setTimeout( function() {
         this.setState({ message: '' });
-      }.bind(this), 5000);
+      }, 5000);
     }
 
     updateMessage();

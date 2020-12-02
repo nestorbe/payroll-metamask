@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import Alert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const StyledCard = withStyles(() => ({
   root: {
@@ -14,6 +15,15 @@ export const StyledCard = withStyles(() => ({
     marginBottom: 12,
   },
 }))(Card);
+
+export const StyledCircular = withStyles((theme) => ({
+  root: {
+    display: '50%',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+}))(CircularProgress);
 
 export const StyledAlert = withStyles((theme) => ({
   root: {

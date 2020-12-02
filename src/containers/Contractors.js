@@ -40,7 +40,8 @@ class Contractors extends Component {
       date: this.state.date,
       amount: this.state.amount,
       reason: this.state.reason,
-      paid: false
+      paid: false,
+      paying: false
     }
 
     this.invoicesArr.push(invoice);

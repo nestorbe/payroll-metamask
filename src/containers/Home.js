@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import detectEthereumProvider from '@metamask/detect-provider';
 import Chip from '@material-ui/core/Chip';
 import { StyledButton } from './Styles'
 
@@ -7,7 +6,6 @@ class Home extends Component {
 
   //Check if metamask is installed
   connectMetamask = async () => {
-    const provider = await detectEthereumProvider();
     if(window.ethereum !== undefined) {
       window.ethereum.enable();
     } else {
