@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Chip from '@material-ui/core/Chip';
 import { StyledButton } from './Styles'
-
 class Home extends Component {
 
   //Check if metamask is installed
@@ -32,7 +30,7 @@ class Home extends Component {
           </StyledButton>
         </div>
         <div>
-          {window.ethereum === undefined ? <StyledButton size="small" href="https://metamask.io/download.html">Install Metamask</StyledButton> : <h1></h1>}
+          {window.ethereum === undefined ? <StyledButton size="small" href="https://metamask.io/download.html">Install Metamask</StyledButton> : null}
         </div>
       </div>
     );
