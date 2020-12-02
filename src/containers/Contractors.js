@@ -39,7 +39,6 @@ class Contractors extends Component {
       amount: this.state.amount,
       reason: this.state.reason,
       paid: false,
-      paying: false
     }
 
     this.invoicesArr.push(invoice);
@@ -115,7 +114,7 @@ class Contractors extends Component {
         <Box display="flex"
              alignItems="center"
              justifyContent="center">
-          {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : <div></div>}
+          {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : null}
         </Box>
       </div>
     );

@@ -12,6 +12,8 @@ class Employer extends Component {
     super(props);
     this.state = {
       message: '',
+      paying: false,
+      errorMessage: '',
     };
     this.invoiceStorage = window.localStorage;
     this.invoices = JSON.parse(this.invoiceStorage.getItem('invoices'));
@@ -21,27 +23,32 @@ class Employer extends Component {
   handlePay = async (id) => {
     //instantiate the invoice object
     const invoiceToPay = this.invoices[id];
-    invoiceToPay.paying = true;
+    this.setState({ paying: true, errorMessage: '', });
     //send metamask transaction
-    await web3.eth.sendTransaction({
-        to: invoiceToPay.address,
-        from: web3.givenProvider.selectedAddress,
-        value: web3.utils.toWei(invoiceToPay.amount, 'ether'),
-    })
-    //set invoice paid flag to true
-    invoiceToPay.paying = false;
-    invoiceToPay.paid = true;
-    //update the localStorage array
-    this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoices));
-    this.setState({ message: 'Invoice paid succesfully!', paying: false });
-    //delay for success message to update
-    const updateMessage = () => {
-      setTimeout( function() {
-        this.setState({ message: '' });
-      }, 5000);
+    try {
+      await web3.eth.sendTransaction({
+          to: invoiceToPay.address,
+          from: web3.givenProvider.selectedAddress,
+          value: web3.utils.toWei(invoiceToPay.amount, 'ether'),
+      })
+      //set invoice paid flag to true
+      invoiceToPay.paid = true;
+      //update the localStorage array
+      this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoices));
+      //set success message
+      this.setState({ message: 'Invoice paid succesfully!', paying: false });
+      //delay for success message to update
+      const updateMessage = () => {
+        setTimeout( function() {
+          this.setState({ message: '' });
+        }.bind(this), 5000);
+      }
+      updateMessage();
+
+    } catch (err) {
+      this.setState({ errorMessage: err.message, paying: false });
     }
 
-    updateMessage();
   };
 
   //Render cards with invoices method
@@ -66,12 +73,10 @@ class Employer extends Component {
               <Typography color="textSecondary">
                 reason: {invoice.reason}
               </Typography>
-              <Box display="flex"
-                   alignItems="center"
-                   justifyContent="center">
+              <Box display="flex" alignItems="center" justifyContent="center">
                 {invoice.paid === false ?
-                  <Button variant="contained" color="secondary" onClick={() => this.handlePay(invoice.id)}>pay invoice</Button> :
-                  <Button variant="contained" disabled>paid</Button>}
+                <Button variant="contained" color="secondary" onClick={() => this.handlePay(invoice.id)}>pay invoice</Button> :
+                <Button variant="contained" disabled>paid</Button> }
               </Box>
             </CardContent>
           </StyledCard>
@@ -91,7 +96,17 @@ class Employer extends Component {
         <Box display="flex"
              alignItems="center"
              justifyContent="center">
-          {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : <div></div>}
+          {this.state.paying === false ?
+            null :
+            <div>
+              <StyledCircular color="secondary" />
+              <Typography>Processing payment...</Typography>
+              <div>
+                <Typography variant="caption" color="textSecondary">(Please do not refresh your browser)</Typography>
+              </div>
+            </div> }
+          {this.state.errorMessage !== '' ? <StyledAlert severity="error">{this.state.errorMessage}</StyledAlert> : null}
+          {this.state.message !== '' ? <StyledAlert severity="success">{this.state.message}</StyledAlert> : null}
         </Box>
       </div>
     );
