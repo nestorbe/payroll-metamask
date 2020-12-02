@@ -12,11 +12,11 @@ class Contractors extends Component {
       amount: '',
       date: '',
       message: '',
-      invoiceId: 0,
       reason: '',
     };
     this.invoicesArr = [];
     this.invoiceStorage = window.localStorage;
+    this.invoiceId = 0;
   }
   //Invoices array update on localStorage
   updateInvoices = () => {
@@ -25,17 +25,15 @@ class Contractors extends Component {
       this.invoicesArr = [];
     } else {
       this.invoicesArr = invoices;
-      this.state.invoiceId = this.invoicesArr.length;
+      this.invoiceId = this.invoicesArr.length;
     }
   }
 
-  async componentDidMount() {
-      this.updateInvoices();
-  }
   //add an invoice to localStorage
   sendInvoice = (event) => {
+    this.updateInvoices();
     const invoice = {
-      id: this.state.invoiceId,
+      id: this.invoiceId,
       address: this.state.address,
       date: this.state.date,
       amount: this.state.amount,
@@ -47,7 +45,6 @@ class Contractors extends Component {
     this.invoicesArr.push(invoice);
     this.invoiceStorage.setItem('invoices', JSON.stringify(this.invoicesArr));
     this.setState({
-      invoiceId: this.invoicesArr.length,
       message: 'Invoice stored succesfully!',
       address: '',
       amount: '',
@@ -102,7 +99,6 @@ class Contractors extends Component {
                 label="Reason:"
                 multiline
                 rows={4}
-                defaultValue="Default Value"
                 variant="outlined"
                 value={this.state.reason}
                 onChange={event => this.setState({ reason: event.target.value})}
