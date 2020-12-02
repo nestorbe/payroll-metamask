@@ -86,7 +86,7 @@ class Employer extends Component {
   render() {
     return (
       <div>
-        <h1><Chip label="Employer Portal" color="secondary" /></h1>
+        <Chip label="Employer Portal" color="secondary" />
         <hr />
         {this.invoices !== null ? this.renderInvoices() : <Box display="flex" alignItems="center" justifyContent="center">
         <StyledAlert severity="warning">There are no invoices to review!</StyledAlert> </Box>}

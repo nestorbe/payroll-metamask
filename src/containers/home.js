@@ -22,8 +22,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <br></br>
-        <Chip label="home" />
         <hr />
         <div>
           <StyledButton color="primary" href="/contractors">

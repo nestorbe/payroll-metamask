@@ -52,7 +52,7 @@ class Contractors extends Component {
   render() {
     return (
       <div>
-        <h1><Chip label="Contractors Portal" color="primary" /></h1>
+        <Chip label="Contractors Portal" color="primary" />
         <hr />
           <h1><Chip label="Submit new invoice" variant="outlined" color="secondary" size="small" /></h1>
           <div>
